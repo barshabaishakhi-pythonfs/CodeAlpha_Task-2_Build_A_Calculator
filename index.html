@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scientific Calculator</title>
+  <link rel="stylesheet" href="./Style.css" />
+  <!-- Google Fonts: Outfit for UI, JetBrains Mono for display -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Animated background orbs -->
+  <div class="bg-orb orb1"></div>
+  <div class="bg-orb orb2"></div>
+  <div class="bg-orb orb3"></div>
+
+  <div class="calculator-wrapper">
+    <div class="calculator">
+
+      <!-- ── HEADER ── -->
+      <div class="calc-header">
+        <span class="calc-title">CALC<span class="accent">PRO</span></span>
+        <!-- Toggle scientific mode -->
+        <button class="mode-toggle" id="modeToggle" title="Toggle Scientific Mode">
+          <span class="mode-icon">⚛</span>
+          <span class="mode-label">SCI</span>
+        </button>
+      </div>
+
+      <!-- ── DISPLAY ── -->
+      <div class="display-area">
+        <!-- Expression / history line -->
+        <div class="expression" id="expression">0</div>
+        <!-- Current input / result line -->
+        <div class="result" id="result"></div>
+        <!-- Indicator chips -->
+        <div class="indicators">
+          <span class="chip" id="chipDeg">DEG</span>
+          <span class="chip" id="chipRad">RAD</span>
+          <span class="chip chip-mode" id="chipSci">SCI</span>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════
+           SCIENTIFIC PANEL (hidden by default)
+      ══════════════════════════════════════ -->
+      <div class="sci-panel" id="sciPanel">
+
+        <!-- Row S1: trig -->
+        <div class="btn-row">
+          <button class="btn sci" data-action="sin">sin</button>
+          <button class="btn sci" data-action="cos">cos</button>
+          <button class="btn sci" data-action="tan">tan</button>
+          <button class="btn sci" data-action="asin">sin⁻¹</button>
+          <button class="btn sci" data-action="acos">cos⁻¹</button>
+          <button class="btn sci" data-action="atan">tan⁻¹</button>
+        </div>
+
+        <!-- Row S2: powers / roots -->
+        <div class="btn-row">
+          <button class="btn sci" data-action="sqrt">√x</button>
+          <button class="btn sci" data-action="cbrt">∛x</button>
+          <button class="btn sci" data-action="square">x²</button>
+          <button class="btn sci" data-action="cube">x³</button>
+          <button class="btn sci" data-action="pow">xʸ</button>
+          <button class="btn sci" data-action="tenPow">10ˣ</button>
+        </div>
+
+        <!-- Row S3: log / exp / const -->
+        <div class="btn-row">
+          <button class="btn sci" data-action="log">log</button>
+          <button class="btn sci" data-action="ln">ln</button>
+          <button class="btn sci" data-action="exp">eˣ</button>
+          <button class="btn sci" data-action="pi">π</button>
+          <button class="btn sci" data-action="e">e</button>
+          <button class="btn sci" data-action="inv">1/x</button>
+        </div>
+
+        <!-- Row S4: misc -->
+        <div class="btn-row">
+          <button class="btn sci" data-action="abs">|x|</button>
+          <button class="btn sci" data-action="factorial">n!</button>
+          <button class="btn sci" data-action="percent">%</button>
+          <button class="btn sci" data-action="nthRoot">ʸ√x</button>
+          <button class="btn sci deg-rad-toggle" id="degRadToggle">DEG</button>
+          <button class="btn sci" data-action="log2">log₂</button>
+        </div>
+
+      </div>
+
+      <!-- ══════════════════════════════════════
+           BASIC KEYPAD
+      ══════════════════════════════════════ -->
+      <div class="basic-panel">
+
+        <!-- Row 1: AC  ± ( )  ÷ -->
+        <div class="btn-row">
+          <button class="btn func" data-action="clear">AC</button>
+          <button class="btn func" data-action="sign">±</button>
+          <button class="btn func" data-action="openParen">(</button>
+          <button class="btn func" data-action="closeParen">)</button>
+          <button class="btn operator" data-action="÷">÷</button>
+        </div>
+
+        <!-- Row 2: 7 8 9 × -->
+        <div class="btn-row">
+          <button class="btn number" data-action="7">7</button>
+          <button class="btn number" data-action="8">8</button>
+          <button class="btn number" data-action="9">9</button>
+          <!-- backspace spans nothing extra; del key -->
+          <button class="btn func del-btn" data-action="delete">⌫</button>
+          <button class="btn operator" data-action="×">×</button>
+        </div>
+
+        <!-- Row 3: 4 5 6 − -->
+        <div class="btn-row">
+          <button class="btn number" data-action="4">4</button>
+          <button class="btn number" data-action="5">5</button>
+          <button class="btn number" data-action="6">6</button>
+          <!-- empty slot (occupied by del above spanning) -->
+          <div class="btn-spacer"></div>
+          <button class="btn operator" data-action="−">−</button>
+        </div>
+
+        <!-- Row 4: 1 2 3 + -->
+        <div class="btn-row">
+          <button class="btn number" data-action="1">1</button>
+          <button class="btn number" data-action="2">2</button>
+          <button class="btn number" data-action="3">3</button>
+          <div class="btn-spacer"></div>
+          <button class="btn operator" data-action="+">+</button>
+        </div>
+
+        <!-- Row 5: 0(wide) . = -->
+        <div class="btn-row last-row">
+          <button class="btn number wide" data-action="0">0</button>
+          <button class="btn number" data-action=".">.</button>
+          <div class="btn-spacer"></div>
+          <button class="btn equals" data-action="=">=</button>
+        </div>
+
+      </div><!-- /basic-panel -->
+
+    </div><!-- /calculator -->
+  </div><!-- /wrapper -->
+
+  <script src="./Script.js"></script>
+</body>
+</html>
