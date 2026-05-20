@@ -15,7 +15,7 @@ A fully functional, responsive Calculator web application built using HTML, CSS,
 
 ## 🌐 Live Demo
 You can view the live, interactive deployment of this project here:  
-👉 **[Insert your GitHub Pages Link Here]**
+👉 **[https://barshabaishakhi-pythonfs.github.io/CodeAlpha_Task-2_Build_A_Calculator/]**
 
 ---
 
